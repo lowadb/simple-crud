@@ -4,6 +4,10 @@ import {RootComponent} from './root.component';
 import {Route, RouterModule} from "@angular/router";
 import {UserListComponent} from "../pages/user-list/user-list.component";
 import {UserDetailComponent} from "../pages/user-detail/user-detail.component";
+import {UserService} from "../services/user.service";
+import {HttpClientModule} from "@angular/common/http";
+import {UserDetailModule} from "../pages/user-detail/user-detail.module";
+import {UserListModule} from "../pages/user-list/user-list.module";
 
 const routes: Route[] = [
   {path: '', component: UserListComponent},
@@ -14,12 +18,17 @@ const routes: Route[] = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
+    UserListModule,
+    UserDetailModule,
   ],
   declarations: [
     RootComponent,
   ],
-  providers: [],
-  bootstrap: [RootComponent]
+  bootstrap: [RootComponent],
+  providers: [
+    UserService
+  ]
 })
 export class RootModule {
 }
