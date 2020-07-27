@@ -2,14 +2,18 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UserListComponent} from './user-list.component';
 import {
+  NzAvatarModule,
   NzButtonModule,
   NzDividerModule,
   NzGridModule,
-  NzLayoutModule, NzMenuModule,
+  NzIconModule,
+  NzLayoutModule,
+  NzMenuModule,
   NzTableModule,
   NzTypographyModule
 } from "ng-zorro-antd";
 import {RouterModule} from "@angular/router";
+import {PipesModule} from "../../pipes/pipes.module";
 
 
 @NgModule({
@@ -23,6 +27,9 @@ import {RouterModule} from "@angular/router";
     NzGridModule,
     NzLayoutModule,
     NzMenuModule,
+    NzAvatarModule,
+    NzIconModule,
+    PipesModule,
   ],
   declarations: [UserListComponent],
   exports: [UserListComponent],

@@ -30,6 +30,12 @@ export class UserListComponent implements OnInit {
 
 const COLS = [
   {
+    title: 'Avatar'
+  },
+  {
+    title: 'Initials'
+  },
+  {
     title: 'First Name',
     compare: (a: User, b: User) => (a?.name?.first > b?.name?.first) ? 1 : -1,
     priority: 3

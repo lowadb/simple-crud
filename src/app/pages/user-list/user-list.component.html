@@ -10,6 +10,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let user of nzTable.data">
+        <td>
+          <nz-avatar [ngStyle]="{ 'background-color': '#acc' }" [nzText]="user | userAgregator : 'short'" nzSize="large"
+                     style="vertical-align: middle;"></nz-avatar>
+        </td>
+        <td>{{user | userAgregator}}</td>
         <td>{{user.name.first}}</td>
         <td>{{user.name.last}}</td>
         <td>{{user.age}}</td>
