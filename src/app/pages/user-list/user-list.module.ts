@@ -1,7 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UserListComponent} from './user-list.component';
-import {NzButtonModule, NzDividerModule, NzTableModule} from "ng-zorro-antd";
+import {
+  NzButtonModule,
+  NzDividerModule,
+  NzGridModule,
+  NzLayoutModule, NzMenuModule,
+  NzTableModule,
+  NzTypographyModule
+} from "ng-zorro-antd";
 import {RouterModule} from "@angular/router";
 
 
@@ -12,6 +19,10 @@ import {RouterModule} from "@angular/router";
     NzDividerModule,
     RouterModule,
     NzButtonModule,
+    NzTypographyModule,
+    NzGridModule,
+    NzLayoutModule,
+    NzMenuModule,
   ],
   declarations: [UserListComponent],
   exports: [UserListComponent],

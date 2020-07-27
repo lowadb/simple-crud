@@ -8,6 +8,7 @@ import {UserService} from "../services/user.service";
 import {HttpClientModule} from "@angular/common/http";
 import {UserDetailModule} from "../pages/user-detail/user-detail.module";
 import {UserListModule} from "../pages/user-list/user-list.module";
+import {NzDividerModule, NzLayoutModule, NzMenuModule} from "ng-zorro-antd";
 
 const routes: Route[] = [
   {path: '', component: UserListComponent},
@@ -21,6 +22,9 @@ const routes: Route[] = [
     HttpClientModule,
     UserListModule,
     UserDetailModule,
+    NzLayoutModule,
+    NzDividerModule,
+    NzMenuModule,
   ],
   declarations: [
     RootComponent,
