@@ -4,12 +4,8 @@
     <nz-table #nzTable [nzData]="users$ | async">
       <thead>
       <tr>
-<!--        <th *ngFor="let col of cols"-->
-<!--            [nzSortOrder]="sortOrder"-->
-<!--            [nzSortFn]="sortFn"-->
-<!--            [nzSortDirections]="sortDirections">{{col}}</th>-->
-
-        <th *ngFor="let column of cols" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">{{ column.title }}</th>
+        <th *ngFor="let column of cols" [nzSortFn]="column.compare"
+            [nzSortPriority]="column.priority">{{ column.title }}</th>
       </tr>
       </thead>
       <tbody>

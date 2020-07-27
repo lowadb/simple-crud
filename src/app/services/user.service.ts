@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {tap} from "rxjs/operators";
+import {filter, map, tap} from "rxjs/operators";
 
 const localStorageKey = 'users';
 
@@ -20,6 +20,15 @@ export class UserService {
       ? of(users)
       : this.http.get<User[]>('/assets/mates.json')
         .pipe(tap(users => localStorage.setItem(localStorageKey, JSON.stringify(users))));
+  }
+
+  /* Получение пользователя по guid */
+  getUser(guid: string): Observable<User> {
+    return this.getUsers()
+      .pipe(
+        filter(users => !!users),
+        map(users => users.find(user => user.guid === guid))
+      );
   }
 
   /* Удаление пользователя из списка */

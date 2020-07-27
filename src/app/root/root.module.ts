@@ -12,7 +12,7 @@ import {NzDividerModule, NzLayoutModule, NzMenuModule} from "ng-zorro-antd";
 
 const routes: Route[] = [
   {path: '', component: UserListComponent},
-  {path: ':id', component: UserDetailComponent},
+  {path: ':guid', component: UserDetailComponent},
 ]
 
 @NgModule({

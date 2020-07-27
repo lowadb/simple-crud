@@ -9,27 +9,7 @@ import {Observable} from "rxjs";
 })
 export class UserListComponent implements OnInit {
   users$: Observable<User[]>;
-
-  cols = [
-    {
-      title: 'First Name',
-      compare: (a: User, b: User) => (a?.name?.first > b?.name?.first) ? 1 : -1,
-      priority: 3
-    },
-    {
-      title: 'Last Name',
-      compare: (a: User, b: User) => (a?.name?.last > b?.name?.last) ? 1 : -1,
-      priority: 2
-    },
-    {
-      title: 'Age',
-      compare: (a: User, b: User) => a?.age - b?.age,
-      priority: 1
-    },
-    {
-      title: 'Actions',
-    }
-  ];
+  cols = COLS;
 
   constructor(
     private userService: UserService
@@ -40,8 +20,31 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /* Удаление пользователя */
   onDelete(guid: string) {
     this.userService.deleteUser(guid);
     this.users$ = this.userService.getUsers();
   }
 }
+
+
+const COLS = [
+  {
+    title: 'First Name',
+    compare: (a: User, b: User) => (a?.name?.first > b?.name?.first) ? 1 : -1,
+    priority: 3
+  },
+  {
+    title: 'Last Name',
+    compare: (a: User, b: User) => (a?.name?.last > b?.name?.last) ? 1 : -1,
+    priority: 2
+  },
+  {
+    title: 'Age',
+    compare: (a: User, b: User) => a?.age - b?.age,
+    priority: 1
+  },
+  {
+    title: 'Actions',
+  }
+];
