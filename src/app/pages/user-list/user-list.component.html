@@ -1,4 +1,24 @@
-<p *ngFor="let user of (users$ | async)">
-  {{user?.name?.first}}
-  {{user?.name?.last}}
-</p>
+<nz-table #nzTable [nzData]="users$ | async">
+  <thead>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Age</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of nzTable.data">
+    <td>{{user.name.first}}</td>
+    <td>{{user.name.last}}</td>
+    <td>{{user.age}}</td>
+    <td>
+      <a [routerLink]="user.guid">Edit</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button nzType="link" nzDanger
+              (click)="onDelete(user.guid)">Delete
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

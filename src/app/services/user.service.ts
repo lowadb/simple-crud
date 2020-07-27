@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {tap} from "rxjs/operators";
+
+const localStorageKey = 'users';
 
 @Injectable()
 export class UserService {
@@ -11,9 +14,34 @@ export class UserService {
   }
 
   /* Получение списка пользователей */
-
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('/assets/mates.json');
+    const users = this.getUsersFromLocalStorage();
+    return (users)
+      ? of(users)
+      : this.http.get<User[]>('/assets/mates.json')
+        .pipe(tap(users => localStorage.setItem(localStorageKey, JSON.stringify(users))));
+  }
+
+  /* Удаление пользователя из списка */
+  deleteUser(guid: string) {
+    let users = this.getUsersFromLocalStorage();
+    if (users) {
+      users = users.filter(user => user.guid !== guid);
+      localStorage.setItem(localStorageKey, JSON.stringify(users));
+    }
+  }
+
+  /* Получение списка пользователей из local storage */
+  getUsersFromLocalStorage(): User[] {
+    const usersString = localStorage.getItem(localStorageKey);
+    if (!usersString) {
+      return null;
+    }
+    try {
+      return JSON.parse(usersString);
+    } catch (e) {
+      return null;
+    }
   }
 }
 
