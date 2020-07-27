@@ -8,7 +8,8 @@ import {UserService} from "../services/user.service";
 import {HttpClientModule} from "@angular/common/http";
 import {UserDetailModule} from "../pages/user-detail/user-detail.module";
 import {UserListModule} from "../pages/user-list/user-list.module";
-import {NzDividerModule, NzLayoutModule, NzMenuModule} from "ng-zorro-antd";
+import {NzDividerModule, NzGridModule, NzLayoutModule, NzMenuModule} from "ng-zorro-antd";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const routes: Route[] = [
   {path: '', component: UserListComponent},
@@ -20,11 +21,13 @@ const routes: Route[] = [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    BrowserAnimationsModule,
     UserListModule,
     UserDetailModule,
     NzLayoutModule,
     NzDividerModule,
     NzMenuModule,
+    NzGridModule,
   ],
   declarations: [
     RootComponent,

@@ -33,11 +33,9 @@ export class UserService {
 
   /* Удаление пользователя из списка */
   deleteUser(guid: string) {
-    let users = this.getUsersFromLocalStorage();
-    if (users) {
-      users = users.filter(user => user.guid !== guid);
-      localStorage.setItem(localStorageKey, JSON.stringify(users));
-    }
+    let users = this.getUsersFromLocalStorage() || [];
+    users = users.filter(user => user.guid !== guid);
+    localStorage.setItem(localStorageKey, JSON.stringify(users));
   }
 
   /* Получение списка пользователей из local storage */
@@ -52,6 +50,25 @@ export class UserService {
       return null;
     }
   }
+
+
+  /* Добавление пользователя */
+  addUser(user: User): Observable<User> {
+    const users = this.getUsersFromLocalStorage() || [];
+    const currentUser = {...user, guid: generateGuid()};
+    users.push(currentUser);
+    localStorage.setItem(localStorageKey, JSON.stringify(users));
+    return of(currentUser);
+  }
+
+  /* Редактирование пользователя */
+  updateUser(user: User): Observable<User> {
+    const users = this.getUsersFromLocalStorage() || [];
+    const currentUserIndex = users.map(usr => usr.guid).indexOf(user.guid);
+    users.splice(currentUserIndex, 1, user);
+    localStorage.setItem(localStorageKey, JSON.stringify(users));
+    return of(user);
+  }
 }
 
 
@@ -63,4 +80,11 @@ export interface User {
     first: string;
     last: string;
   },
+}
+
+export function generateGuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
 }

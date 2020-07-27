@@ -1,6 +1,6 @@
 <div nz-row>
   <div nz-col nzSpan="1"></div>
-  <div nz-col nzSpan="10">
+  <div nz-col nzSpan="22">
     <nz-table #nzTable [nzData]="users$ | async">
       <thead>
       <tr>
@@ -13,6 +13,7 @@
         <td>{{user.name.first}}</td>
         <td>{{user.name.last}}</td>
         <td>{{user.age}}</td>
+        <td>{{user.email}}</td>
         <td>
           <a [routerLink]="user.guid">Edit</a>
           <nz-divider nzType="vertical"></nz-divider>
@@ -24,5 +25,4 @@
       </tbody>
     </nz-table>
   </div>
-  <div nz-col nzSpan="1"></div>
 </div>

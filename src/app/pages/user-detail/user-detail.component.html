@@ -1,1 +1,39 @@
-<p>user-detail works!</p>
+<div nz-row>
+  <div nz-col nzSpan="1"></div>
+  <div nz-col nzSpan="11">
+    <form nz-form [formGroup]="userForm"
+          (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="firstName">First Name</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is empty!">
+          <input nz-input formControlName="firstName" id="firstName"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="lastName">Last Name</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is empty!">
+          <input nz-input formControlName="lastName" id="lastName"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="age">Age</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is empty!">
+          <input type="number" nz-input formControlName="age" id="age"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">Email</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The email is not valid!">
+          <input nz-input formControlName="email" id="email"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button [disabled]="userForm.invalid || !isEdited"
+                  nz-button nzType="primary">{{(creationMode) ? 'Add' : 'Save'}}</button>
+          <button type="button" nz-button routerLink="/">Cancel</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>

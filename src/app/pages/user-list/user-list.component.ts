@@ -45,6 +45,9 @@ const COLS = [
     priority: 1
   },
   {
+    title: 'Email',
+  },
+  {
     title: 'Actions',
   }
 ];
